@@ -1,5 +1,11 @@
-export default function Home() {
+import { Button } from "@/components/ui/button";
+
+const Home = () => {
   return (
-    <p>Hello Board!</p>
+    <Button size='sm'>
+      Click me
+    </Button>
   );
 }
+
+export default Home;
