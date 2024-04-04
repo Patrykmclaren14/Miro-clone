@@ -76,13 +76,13 @@ const BoardList = ({
             authorName={board.authorName}
             createdAt={board._creationTime}
             orgId={board.orgId}
-            isFavorite={true}
+            isFavorite={board.isFavorite}
           />
         ))}
 
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default BoardList;
