@@ -1,9 +1,10 @@
 'use client';
 
+import { memo } from "react";
+
 import { useSelectionBounds } from "@/hooks/use-selection-bounds";
 import { useSelf, useStorage } from "@/liveblocks.config";
 import { LayerType, Side, XYWH } from "@/types/canvas";
-import { memo } from "react";
 
 interface SelectionBoxProps {
   onResizeHandlePointerDown: (corner: Side, initalBounds: XYWH) => void;
@@ -41,7 +42,7 @@ const SelectionBox = memo(({
         x={0}
         y={0}
         width={bounds.width}
-        height={bounds.width}
+        height={bounds.height}
       />
       {isShowingHandles && (
         <>
@@ -57,7 +58,8 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x - HANDLE_WIDTH / 2}px, ${bounds.y - HANDLE_WIDTH / 2}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(Side.Top + Side.Left, bounds);
             }}
           />
           <rect
@@ -72,7 +74,8 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x + bounds.width / 2 - HANDLE_WIDTH / 2}px, ${bounds.y - HANDLE_WIDTH / 2}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(Side.Top, bounds);
             }}
           />
           <rect
@@ -87,7 +90,8 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x - HANDLE_WIDTH / 2 + bounds.width}px, ${bounds.y - HANDLE_WIDTH / 2}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(Side.Top + Side.Right, bounds);
             }}
           />
           <rect
@@ -102,7 +106,8 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x - HANDLE_WIDTH / 2 + bounds.width}px, ${bounds.y - HANDLE_WIDTH / 2 + bounds.height / 2}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(Side.Right, bounds);
             }}
           />
           <rect
@@ -117,7 +122,11 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x - HANDLE_WIDTH / 2 + bounds.width}px, ${bounds.y - HANDLE_WIDTH / 2 + bounds.height}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(
+                Side.Bottom + Side.Right,
+                bounds
+              );
             }}
           />
           <rect
@@ -132,7 +141,8 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x +  bounds.width / 2 - HANDLE_WIDTH / 2}px, ${bounds.y - HANDLE_WIDTH / 2 + bounds.height}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(Side.Bottom, bounds);
             }}
           />
           <rect
@@ -147,7 +157,11 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x - HANDLE_WIDTH / 2}px, ${bounds.y - HANDLE_WIDTH / 2 + bounds.height}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(
+                Side.Bottom + Side.Left,
+                bounds
+              );
             }}
           />
           <rect
@@ -162,7 +176,8 @@ const SelectionBox = memo(({
               transform: `translate(${bounds.x - HANDLE_WIDTH / 2}px, ${bounds.y - HANDLE_WIDTH / 2 + bounds.height / 2}px)`
             }}
             onPointerDown={e => {
-              e.stopPropagation
+              e.stopPropagation;
+              onResizeHandlePointerDown(Side.Left, bounds);
             }}
           />
         </>
