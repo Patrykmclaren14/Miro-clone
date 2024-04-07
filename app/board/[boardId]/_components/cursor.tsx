@@ -18,8 +18,6 @@ const Cursor = memo(({
 
   const name = info?.name || "Teammate";
 
-  console.log(name)
-
   if (!cursor) {
     return null;
   }
